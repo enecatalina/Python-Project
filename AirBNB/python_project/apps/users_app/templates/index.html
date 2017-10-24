@@ -16,24 +16,38 @@
     <div class="background">
         <h1>Welcome to Airbnb!</h1>
         <h3> Sign up for an account </h3>
-        <div class="register">
-            <form action='/airbnb/create' method='post'>
+        <form action='/airbnb/create' method='post'>
+            <div class="form-group">
                 {% csrf_token %} 
                 First Name:<input class="first_name" type='text' name='first_name'> 
+            </div>
+            <div class="form-group">
                 Last Name:<input class="last_name" type='text' name='last_name'> 
+            </div>
+            <div class="form-group">
                 Birthday: <input class="birthday" type="date" name='birthday'> 
+            </div>
+            <div class="form-group">
                 Email:<input class="email" type='text' name='email'> 
-                Password:<input class="pw" type='password' name='password'> 
+            </div>
+            <div class="form-group">
+                Password:<input class="pw" type='password' name='password'>
+            </div>
+            <div class="form-group">
                 Confirm Password:<input class="cpw" type='password' name='confirm_password'>
+            </div>
+            <div class="form-group">
                 Phone Number:<input class="phone_number" type='text' name='phone_number'>
-                <div class="currency">
+            </div>
+            <div class="form-group">
                     Gender:
                     <select name="gender">
                         <option value="F">Select one</option>
                         <option value="F">Female</option>
                         <option value="M">Male</option>
-                </select>
-                <div class="currency">
+                    </select>
+            </div>
+                <div class="form-group">
                     Preferred Language:
                     <select name="preferred_language">
                         <option value="EN">Select one</option>
@@ -42,7 +56,8 @@
                         <option value="FR">French</option>
                         <option value="SW">Swahili</option>
                 </select>
-                <div class="currency">
+                </div>
+                <div class="form-group">
                     Preferred Currency:
                     <select name="preferred_currency">
                         <option value="USD">Select one</option>
@@ -51,9 +66,16 @@
                         <option value="EUR">EUR</option>
                         <option value="GBP">GBP</option>
                 </select>
+                </div>
+                <div class="form-group">
                 Location: <input class="location" type='text' name='location'>
+                </div>
+                <div class="form-group">
                 Describe Yourself: <textarea name="user_description" id="description"></textarea>
+                </div>
+                <div class="form-group">
                 <input class="submit" type='submit' value='Register!'> 
+                </div>
                 {% if messages %}
                     <ul class="messages">
                         {% for message in messages %}
@@ -61,14 +83,21 @@
                             {% endfor %}
                     </ul>
                 {% endif %}
-            </form>
+        </form>
         </div>
         <div class="login">
             <h4> Already a user?</h4>
             <form action='/airbnb/login' method='post'>
-                {% csrf_token %} Email: <input class="email" type='text' name='email'> Password:
-                <input class="pw" type='password' name='password'>
+                <div class="form-group">
+                {% csrf_token %} 
+                Email: <input class="email" type='text' name='email'> 
+                </div>
+                <div class="form-group">
+                Password:<input class="pw" type='password' name='password'>
+                </div>
+                <div class="form-group">
                 <input class="login" type='submit' value='Login'>
+                </div>
             </form>
         </div>
     </div>

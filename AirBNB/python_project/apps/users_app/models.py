@@ -17,10 +17,10 @@ phone_regex = re.compile(r'^\+?1?\d{9,15}$')
 class UserManager(models.Manager):
     def register_validator(self, postData):
         errors = []
-        if len(postData['first_name']) < 5:
-            errors.append("First name should be more than 4 characters")
-        if len(postData['last_name']) < 5:
-            errors.append("Last name should be more than 4 characters")
+        if len(postData['first_name']) < 1:
+            errors.append("Name cannot be empty!")
+        if len(postData['last_name']) < 1:
+            errors.append("Name cannot be empty!")
         if len(postData['first_name']) < 5 and postData['first_name'].isdigit():
             errors.append("Name cannot contain numbers")
         if len(postData['last_name']) < 5 and postData['last_name'].isdigit():
@@ -67,7 +67,7 @@ class User(models.Model):
     birthday = models.DateField(blank=True, default=datetime(2017, 01, 01))
     email = models.EmailField()
     password = models.CharField(max_length=100)
-    phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True)
+    phone_number = models.CharField(max_length=15, blank=True)
     gender_choices = (
         ('M', 'Male'),
         ('F', 'Female'),
@@ -79,7 +79,7 @@ class User(models.Model):
         ('FR', 'French'),
         ('SW', 'Swahili'),
     )
-    preferred_lanuage = models.CharField(max_length=2, choices=language_choices, default='EN')
+    preferred_language = models.CharField(max_length=2, choices=language_choices, default='EN')
     currency_choices = (
         ('USD', 'United States'),
         ('AUD', 'Australia'),
@@ -95,5 +95,5 @@ class User(models.Model):
 
     def __repr__(self):
         return "<user object: {} {} {} {} {} {} {} {} {} {} {} {} {} {}>".format(self.id, self.first_name, self.last_name, self.email,
-         self.birthday, self.password, self.phone_number, self.gender, self.preferred_lanuage, self.preferred_currency, self.location, 
+         self.birthday, self.password, self.phone_number, self.gender, self.preferred_language, self.preferred_currency, self.location, 
          self.user_description, self.created_at, self.updated_at)

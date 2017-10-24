@@ -32,9 +32,10 @@ def create(request):
     gender = request.POST['gender']
     print request.POST['preferred_language']
     preferred_language = request.POST['preferred_language']
+    print request.POST['preferred_currency']
     preferred_currency = request.POST['preferred_currency']
     location = request.POST['location']
-    user_descritpion = request.POST['user_description']
+    user_description = request.POST['user_description']
     errors = User.objects.register_validator(request.POST)
     print errors
     if len(errors):
@@ -45,7 +46,7 @@ def create(request):
         hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
         new_user = User.objects.create(
             first_name=first_name, last_name=last_name, birthday=birthday, email=email, password=hashed_password, phone_number=phone_number, 
-            gender=gender, preferred_language=preferred_language, preferred_currency=preferred_currency, location=location, user_descritpion=user_descritpion)
+            gender=gender, preferred_language=preferred_language, preferred_currency=preferred_currency, location=location, user_description=user_description)
         new_user.save()
         request.session['user_id'] = new_user.id
         return redirect(reverse('users:success'))
