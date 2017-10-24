@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'property_details/styles.css' %}" />
+    <title>Index</title>
+</head>
+<body>
+    <p>This has all the listings</p>
+    <a href="/property/add">Add Listing</a>
+    {% for property in listings %}
+        <img src="/property/media/{{property.photo1}}" alt="Property Image">
+        <p>{{ property.property_type}}</p>
+        <a href="/property/display/{{property.id}}">See property</a>
+    {% endfor %}
+</body>
+</html>
