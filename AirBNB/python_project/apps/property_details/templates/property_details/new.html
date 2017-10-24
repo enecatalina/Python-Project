@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New Property</title>
+</head>
+<body>
+    <a href="/property">Home</a>
+    <form action="create" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label for="listing">Is this listing a home, hotel, or something else?</label>
+        <select name="listing">
+            <option value="Home">Home</option>
+            <option value="Hotel">Hotel</option>
+            <option value="Else">Something else</option>
+        </select><br>
+
+        <label for="property_type">What type of property is this?</label>
+        <select name="property_type">
+            <option value="Apart">Apartment</option>
+            <option value="Condo">Condominium</option>
+            <option value="Guest">Guesthouse</option>
+            <option value="House">House</option>
+            <option value="Inlaw">In-law</option>
+            <option value="G_sui">Guest suite</option>
+            <option value="Town">Townhouse</option>
+            <option value="Vaca">Vacation home</option>
+        </select><br>
+
+        <label for="type">What will guests have?</label>
+        <select name="type">
+            <option value="Entire">Entire Place</option>
+            <option value="Priv">Private Room</option>
+            <option value="Share">Shared Room</option>
+        </select><br>
+
+        <label for="space">Is this set up as a dedicated guest space?</label><br>
+        <input type="radio" name='space' value=True checked>Yes, its primarily set up for guests<br>
+        <input type="radio" name="space" value=False>No, I keep my personal belongings here<br>
+
+        <p>How many guests can your place accommodate?</p><br>
+        <label for="guests">Guests</label>
+        <input type="number" name="guests"><br>
+
+        <label for="beds">Beds</label>
+        <input type="number" name="beds"><br>
+
+        <p>Sleeping arrangements</p>
+        <label for="bedtype">Bedroom 1</label>
+        <select name="bedtype">
+            <option value="Do">Double</option>
+            <option value="Qu">Queen</option>
+            <option value="Ki">King</option>
+            <option value="Si">Single</option>
+            <option value="So">Sofa bed</option>
+        </select><br>
+
+        <label for="common_space">Common Spaces</label>
+        <select name="common_space">
+            <option value="Co">Couch</option>
+            <option value="Fl">Floor Mattress</option>
+            <option value="So">Sofa bed</option>
+        </select><br>
+
+        <label for="bathrooms">Bathrooms</label>
+        <input type="number" name="bathrooms"><br>
+
+        <label for="country">Country</label>
+        <input type="text" name="country"><br>
+
+        <label for="Street_one">Street Address</label>
+        <input type="text" name="Street_one"><br>
+        
+        <label for="Street_two">Street Address II</label>
+        <input type="text" name="Street_two"><br>
+
+        <label for="city">City</label>
+        <input type="text" name="city"><br>
+
+        <label for="state">State</label>
+        <input type="text" name="state"><br>
+
+        <label for="zip">Zip Code</label>
+        <input type="text" name="zip"><br>
+
+        <p>What amenities do you offer?</p>
+        <input type="checkbox" name="normal_amenities" value="Essentials">Essentials<br>
+        <input type="checkbox" name="normal_amenities" value="Wifi">Wifi<br>
+        <input type="checkbox" name="normal_amenities" value="Shampoo">Shampoo<br>
+        <input type="checkbox" name="normal_amenities" value="Closet/drawers">Closet/drawers<br>
+        <input type="checkbox" name="normal_amenities" value="TV">TV<br>
+        <input type="checkbox" name="normal_amenities" value="Heat">Heat<br>
+        <input type="checkbox" name="normal_amenities" value="Air conditioning">Air conditioning<br>
+        <input type="checkbox" name="normal_amenities" value="Breakfast, coffee, tea">Breakfast, coffee, tea<br>
+        <input type="checkbox" name="normal_amenities" value="Desk/workspace">Desk/workspace<br>
+        <input type="checkbox" name="normal_amenities" value="Fireplace">Fireplace<br>
+        <input type="checkbox" name="normal_amenities" value="Iron">Iron<br>
+        <input type="checkbox" name="normal_amenities" value="Hair dryer">Hair dryer<br>
+        <input type="checkbox" name="normal_amenities" value="Pets in the house">Pets in the house<br>
+
+        <p>Safety amenities</p>
+        <input type="checkbox" name="safety_amenities" value="Smoke detector">Smoke detector<br>
+        <input type="checkbox" name="safety_amenities" value="Carbon monoxide detector">Carbon monoxide detector<br>
+        <input type="checkbox" name="safety_amenities" value="First aid kit">First aid kit<br>
+        <input type="checkbox" name="safety_amenities" value="Safety card">Safety card<br>
+        <input type="checkbox" name="safety_amenities" value="Fire extinguisher">Fire extinguisher<br>
+        <input type="checkbox" name="safety_amenities" value="Lock on bedroom door">Lock on bedroom door<br>
+
+        <p>What spaces can guests use?</p>
+        <input type="checkbox" name="bonus_space" value="Pool">Pool<br>
+        <input type="checkbox" name="bonus_space" value="Kitchen">Kitchen<br>
+        <input type="checkbox" name="bonus_space" value="Washer">Laundry - washer<br>
+        <input type="checkbox" name="bonus_space" value="Dryer">Laundry - dryer<br>
+        <input type="checkbox" name="bonus_space" value="Parking">Parking<br>
+        <input type="checkbox" name="bonus_space" value="Elevator">Elevator<br>
+        <input type="checkbox" name="bonus_space" value="Hot tub">Hot tub<br>
+        <input type="checkbox" name="bonus_space" value="Gym">Gym<br>
+
+        <label for="rate">Rate?</label>
+        <input type="number" name="rate">
+
+        <input type="file" name="image" accept="image/*">
+
+        <input type="submit" value="Submit">
+
+    </form>
+</body>
+</html>

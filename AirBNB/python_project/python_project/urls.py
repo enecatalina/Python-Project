@@ -18,5 +18,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^property/', include('apps.property_details.urls', namespace='property')),
     url(r'^airbnb/', include('apps.users_app.urls', namespace="users")),
 ]
