@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="background">
+        <h1>Welcome to Airbnb!</h1>
+        <h3> Sign up for an account </h3>
+        <div class="register">
+            <form action='/airbnb/create' method='post'>
+                {% csrf_token %} 
+                First Name:<input class="first_name" type='text' name='first_name'> 
+                Last Name:<input class="last_name" type='text' name='last_name'> 
+                Birthday: <input class="birthday" type="date" name='birthday'> 
+                Email:<input class="email" type='text' name='email'> 
+                Password:<input class="pw" type='password' name='password'> 
+                Confirm Password:<input class="cpw" type='password' name='confirm_password'>
+                Phone Number:<input class="phone_number" type='text' name='phone_number'>
+                <div class="currency">
+                    Gender:
+                    <select name="gender">
+                        <option value="F">Select one</option>
+                        <option value="F">Female</option>
+                        <option value="M">Male</option>
+                </select>
+                <div class="currency">
+                    Preferred Language:
+                    <select name="preferred_language">
+                        <option value="EN">Select one</option>
+                        <option value="EN">English</option>
+                        <option value="SP">Spanish</option>
+                        <option value="FR">French</option>
+                        <option value="SW">Swahili</option>
+                </select>
+                <div class="currency">
+                    Preferred Currency:
+                    <select name="preferred_currency">
+                        <option value="USD">Select one</option>
+                        <option value="USD">USD</option>
+                        <option value="AUD">AUD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                </select>
+                Location: <input class="location" type='text' name='location'>
+                Describe Yourself: <textarea name="user_description" id="description"></textarea>
+                <input class="submit" type='submit' value='Register!'> 
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.error }}" {% endif %}>{{ message }}</li>
+                            {% endfor %}
+                    </ul>
+                {% endif %}
+            </form>
+        </div>
+        <div class="login">
+            <h4> Already a user?</h4>
+            <form action='/airbnb/login' method='post'>
+                {% csrf_token %} Email: <input class="email" type='text' name='email'> Password:
+                <input class="pw" type='password' name='password'>
+                <input class="login" type='submit' value='Login'>
+            </form>
+        </div>
+    </div>
+
+    <body>
