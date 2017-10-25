@@ -2,30 +2,48 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Airbnb, Inc</title>
     {% load static %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
         crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+     <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="header">
-        <form action="{% url 'users:index' %}">
-            {% csrf_token %}
-            <input type='submit' value='Sign Up'>
+    
+        <nav class="navbar navbar-toggleable-md navbar-light bg-inverse row">
+            <button class=" col-1 offset-sm-6" type="button"  data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+     </button>
+            <a class="navbar-brand" href="{% url 'users:index' %}">Sign Up</a>
+        <nav class="navbar navbar-toggleable-md navbar-light bg-inverse">
+            <button class=" navbar-toggler-right" type="button" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+            <a class="navbar-brand" href="{% url 'users:logme' %}">Log In</a>
+        </nav>
+    </nav>
+    <div class="container">
+        <h1>Airbnb</h1>
+        <p>Book unique homes and experience a city like a local.</p>
+        <div class="form-group">
+        <form class="form-inline">
+            <input class="form-control col-9" type="text" value="search">
+            <input type='submit' value='Search'>
         </form>
-        <form action="{% url 'users:index' %}">
-            {% csrf_token %}
-            <input type='submit' value='Log In'>
-        </form>
+        </div>
     </div>
-    <h1>Airbnb</h1>
-    <p>Book unique homes and experience a city like a local.</p>
-    <input type="text" value="search">
-    <input type='submit' value='Search'>
 </body>
 </html>

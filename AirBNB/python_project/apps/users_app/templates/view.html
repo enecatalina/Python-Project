@@ -14,6 +14,10 @@
 
 <body>
     <h1> Hey, I'm {{user_profile.first_name}}! </h1>
-    <p> {{profile_user.location}}. {{profile_user.created_at}}</p>
-    <p><a href="{% url 'users:edit' users.id %}"></a>Edit Profile</p>
+    <p> {{user_profile.location}}. Joined on {{user_profile.created_at}}</p>
+    <form action="{% url 'users:edit' user_profile.id %}">
+        <div class="form-group">
+            {% csrf_token %}
+            <input type='submit' value='Edit Profile'>
+        </div>
     <p>About me</p>

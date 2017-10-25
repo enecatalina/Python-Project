@@ -5,9 +5,15 @@ from . import views
 urlpatterns = [
     url(r'^$', views.home, name="home"),
     url(r'^signup$', views.index, name="index"),
+    url(r'^logme$', views.logme, name="logme"),
+    url(r'^home$', views.newhome, name="newhome"),
     url(r'^create$', views.create, name="create"),
     url(r'^login$', views.login, name="login"),
-    url(r'^success$', views.success_login, name="success"),
+    # url(r'^success$', views.success_login, name="success"),
+    url(r'^(?P<user_id>\d+)/edit$', views.edit, name="edit"),
+    url(r'^(?P<user_id>\d+)/update$', views.update, name="update"),
+    url(r'^(?P<user_id>\d+)/view$', views.view, name="view"),
+    # url(r'^(?P<friend_id>\d+)/destroy$', views.destroy, name="destroy"),
     url(r'^logout$', views.logout, name="logout"),
 
 ]
