@@ -11,7 +11,7 @@
 </head>
 <h3> {{user_edit.first_name}}</h3>
 <div class="form">
-    <form action="{% url 'users:update' user_edit.id %}" method='POST'>
+    <form action="{% url 'users:update' user_edit.id %}" method='POST' enctype="multipart/form-data">
         {% csrf_token %} 
         <div class="form-group">
              First Name:<input class="first_name" type='text' name='first_name'>
@@ -68,6 +68,7 @@
         <div class="form-group">
             Describe Yourself: <textarea name="user_description" id="description"></textarea>
         </div>
+        <input type="file" name="profile_pic" accept="image/*">
         <div class="form-group">
             <input class="submit" type='submit' value='Submit Changes!'>
         </div>
