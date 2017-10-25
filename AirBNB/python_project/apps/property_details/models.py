@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.core.files import File
 from django.db import models
 from ..users_app.models import User
-from django.contrib.postgres.fields import ArrayField
+
 
 # Create your models here.
 class listingManager(models.Manager):
@@ -102,7 +102,7 @@ class listingManager(models.Manager):
 
 
 class listing(models.Model):
-    title = models.CharField(max_length=20)
+    title = models.CharField(max_length=20, default="Castle")
     listing_type = models.CharField(max_length = 15, default = 'Home')
     property_type = models.CharField(max_length = 15, default = 'Apartment')
     room_type = models.CharField(max_length = 15, default = 'Private room')
@@ -126,7 +126,7 @@ class listing(models.Model):
     photo6 = models.ImageField(upload_to='uploads/%Y/%m', null=True, blank=True)
     photo7 = models.ImageField(upload_to='uploads/%Y/%m', null=True, blank=True)
     photo8 = models.ImageField(upload_to='uploads/%Y/%m', null=True, blank=True)
-    host_user = models.ForeignKey(User, related_name="host_listing")
+    host_user = models.ForeignKey(User, related_name="host_listing", default=1)
     rate = models.FloatField()
     description = models.CharField(max_length = 1000 , null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
