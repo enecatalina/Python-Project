@@ -12,6 +12,8 @@ urlpatterns = [
     url(r'^display/(?P<listing_id>\d+)$', views.display, name='display'),   #This will be the route to display a property listing
     url(r'^update/(?P<listing_id>\d+)$', views.update, name='update'),      #This will be the route to update the object in the database
     url(r'^destroy/(?P<listing_id>\d+)$', views.destroy, name='destory'),    #This will be the route to display a property listing
+    url(r'messages$', views.messages, name='messages'),                     #This will be the route to view all your messages
+    url(r'create_review$', views.create_review, name='create_review')       #This will be the route to create reviews
 ]
 
 if settings.DEBUG:

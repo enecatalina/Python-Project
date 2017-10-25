@@ -4,128 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'property_details/css/styles.css' %}" />
     <title>New Property</title>
 </head>
 <body>
-    <a href="/property">Home</a>
-    <form action="create" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+    <div class="navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">AirBnb</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Messages
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-        <label for="listing">Is this listing a home, hotel, or something else?</label>
-        <select name="listing">
-            <option value="Home">Home</option>
-            <option value="Hotel">Hotel</option>
-            <option value="Else">Something else</option>
-        </select><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-7">
+                <h3>Hi, {{user.first_name}}! Let's get started listing your space</h3>
+                <p>Step 1</p>
+                <h4>What kind of are you listing?</h4>
 
-        <label for="property_type">What type of property is this?</label>
-        <select name="property_type">
-            <option value="Apart">Apartment</option>
-            <option value="Condo">Condominium</option>
-            <option value="Guest">Guesthouse</option>
-            <option value="House">House</option>
-            <option value="Inlaw">In-law</option>
-            <option value="G_sui">Guest suite</option>
-            <option value="Town">Townhouse</option>
-            <option value="Vaca">Vacation home</option>
-        </select><br>
+                <form action="create" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="listing">Is this listing a home, hotel, or something else?</label>
+                    <select class="w-75" name="listing">
+                        <option value="Home">Home</option>
+                        <option value="Hotel">Hotel</option>
+                        <option value="Else">Something else</option>
+                    </select>
+                
+                    <label for="property_type">What type of property is this?</label>
+                    <select class="w-75" name="property_type">
+                        <option value="Apartment">Apartment</option>
+                        <option value="Condominium">Condominium</option>
+                        <option value="Guesthouse">Guesthouse</option>
+                        <option value="House">House</option>
+                        <option value="In-law">In-law</option>
+                        <option value="Guest suite">Guest suite</option>
+                        <option value="Townhouse">Townhouse</option>
+                        <option value="Vacation home">Vacation home</option>
+                    </select>
+                
+                    <label for="type">What will guests have?</label>
+                    <select class="w-75" name="type">
+                        <option value="Entire Place">Entire Place</option>
+                        <option value="Private Room">Private Room</option>
+                        <option value="Shared Room">Shared Room</option>
+                    </select>
+                
+                    <label for="space">Is this set up as a dedicated guest space?</label>
+                    <input type="radio" name='space' value=True checked>Yes, its primarily set up for guests<br>
+                    <input type="radio" name="space" value=False>No, I keep my personal belongings here
+                    
+                    <h4>How many guests can your place accommodate?</h4>
+                    <label for="guests">Guests</label>
+                    <input type="number" name="guests" value="0" min="0" max="16">
+                
+                    <label for="beds">Beds</label>
+                    <input type="number" name="beds" value="0" min="0" max="16">
+                
+                    <h4>Sleeping arrangements</h4>
+                    <label for="bedtype">Bedroom 1</label>
+                    <select class="w-75"name="bedtype">
+                        <option value="Do">Double</option>
+                        <option value="Qu">Queen</option>
+                        <option value="Ki">King</option>
+                        <option value="Si">Single</option>
+                        <option value="So">Sofa bed</option>
+                    </select>
+                
+                    <label for="common_space">Common Spaces</label>
+                    <select class="w-75"name="common_space">
+                        <option value="Co">Couch</option>
+                        <option value="Fl">Floor Mattress</option>
+                        <option value="So">Sofa bed</option>
+                    </select>
+                
+                    <label for="bathrooms">Bathrooms</label>
+                    <input type="number" name="bathrooms" value="0" min="0" max="16">
+                
+                    <label for="country">Country</label>
+                    <input class="w-75" type="text" name="country">
+                
+                    <label for="Street_one">Street Address</label>
+                    <input class="w-75" type="text" name="Street_one">
+                
+                    <label for="Street_two">Street Address II</label>
+                    <input class="w-75" type="text" name="Street_two">
+                
+                    <label for="city">City</label>
+                    <input class="w-75" type="text" name="city">
+                
+                    <label for="state">State</label>
+                    <input class="w-75" type="text" name="state">
+                
+                    <label for="zip">Zip Code</label>
+                    <input class="w-75" type="text" name="zip">
+                
+                    <h4>What amenities do you offer?</h4>
+                    <input type="checkbox" name="normal_amenities" value="Essentials">Essentials
+                    <input type="checkbox" name="normal_amenities" value="Wifi">Wifi
+                    <input type="checkbox" name="normal_amenities" value="Shampoo">Shampoo
+                    <input type="checkbox" name="normal_amenities" value="Closet/drawers">Closet/drawers
+                    <input type="checkbox" name="normal_amenities" value="TV">TV
+                    <input type="checkbox" name="normal_amenities" value="Heat">Heat
+                    <input type="checkbox" name="normal_amenities" value="Air conditioning">Air conditioning
+                    <input type="checkbox" name="normal_amenities" value="Breakfast, coffee, tea">Breakfast, coffee, tea
+                    <input type="checkbox" name="normal_amenities" value="Desk/workspace">Desk/workspace
+                    <input type="checkbox" name="normal_amenities" value="Fireplace">Fireplace
+                    <input type="checkbox" name="normal_amenities" value="Iron">Iron
+                    <input type="checkbox" name="normal_amenities" value="Hair dryer">Hair dryer
+                    <input type="checkbox" name="normal_amenities" value="Pets in the house">Pets in the house
+                
+                    <h4>Safety amenities</h4>
+                    <input type="checkbox" name="safety_amenities" value="Smoke detector">Smoke detector
+                    <input type="checkbox" name="safety_amenities" value="Carbon monoxide detector">Carbon monoxide detector
+                    <input type="checkbox" name="safety_amenities" value="First aid kit">First aid kit
+                    <input type="checkbox" name="safety_amenities" value="Safety card">Safety card
+                    <input type="checkbox" name="safety_amenities" value="Fire extinguisher">Fire extinguisher
+                    <input type="checkbox" name="safety_amenities" value="Lock on bedroom door">Lock on bedroom door
+                
+                    <h4>What spaces can guests use?</h4>
+                    <input type="checkbox" name="bonus_space" value="Pool">Pool
+                    <input type="checkbox" name="bonus_space" value="Kitchen">Kitchen
+                    <input type="checkbox" name="bonus_space" value="Washer">Laundry - washer
+                    <input type="checkbox" name="bonus_space" value="Dryer">Laundry - dryer
+                    <input type="checkbox" name="bonus_space" value="Parking">Parking
+                    <input type="checkbox" name="bonus_space" value="Elevator">Elevator
+                    <input type="checkbox" name="bonus_space" value="Hot tub">Hot tub
+                    <input type="checkbox" name="bonus_space" value="Gym">Gym
+                
+                    <label for="rate">Rate?</label>
+                    <input type="number" name="rate" value="0" min="0">
 
-        <label for="type">What will guests have?</label>
-        <select name="type">
-            <option value="Entire">Entire Place</option>
-            <option value="Priv">Private Room</option>
-            <option value="Share">Shared Room</option>
-        </select><br>
+                    <h4>What should we call your listing?</h4>
+                    <input type="text" name="user_title" placeholder="Listing title" max="20">
 
-        <label for="space">Is this set up as a dedicated guest space?</label><br>
-        <input type="radio" name='space' value=True checked>Yes, its primarily set up for guests<br>
-        <input type="radio" name="space" value=False>No, I keep my personal belongings here<br>
+                    <h4>Would you like to describe your listing?</h4>
+                    <textarea name="user_description" cols="30" rows="10"></textarea>
 
-        <p>How many guests can your place accommodate?</p><br>
-        <label for="guests">Guests</label>
-        <input type="number" name="guests"><br>
+                    <h4>Would you like to upload some pictures?</h4>
+                    <input type="file" name="image" accept="image/*">
+                    <input type="submit" value="Submit">
+                </form>
 
-        <label for="beds">Beds</label>
-        <input type="number" name="beds"><br>
-
-        <p>Sleeping arrangements</p>
-        <label for="bedtype">Bedroom 1</label>
-        <select name="bedtype">
-            <option value="Do">Double</option>
-            <option value="Qu">Queen</option>
-            <option value="Ki">King</option>
-            <option value="Si">Single</option>
-            <option value="So">Sofa bed</option>
-        </select><br>
-
-        <label for="common_space">Common Spaces</label>
-        <select name="common_space">
-            <option value="Co">Couch</option>
-            <option value="Fl">Floor Mattress</option>
-            <option value="So">Sofa bed</option>
-        </select><br>
-
-        <label for="bathrooms">Bathrooms</label>
-        <input type="number" name="bathrooms"><br>
-
-        <label for="country">Country</label>
-        <input type="text" name="country"><br>
-
-        <label for="Street_one">Street Address</label>
-        <input type="text" name="Street_one"><br>
-        
-        <label for="Street_two">Street Address II</label>
-        <input type="text" name="Street_two"><br>
-
-        <label for="city">City</label>
-        <input type="text" name="city"><br>
-
-        <label for="state">State</label>
-        <input type="text" name="state"><br>
-
-        <label for="zip">Zip Code</label>
-        <input type="text" name="zip"><br>
-
-        <p>What amenities do you offer?</p>
-        <input type="checkbox" name="normal_amenities" value="Essentials">Essentials<br>
-        <input type="checkbox" name="normal_amenities" value="Wifi">Wifi<br>
-        <input type="checkbox" name="normal_amenities" value="Shampoo">Shampoo<br>
-        <input type="checkbox" name="normal_amenities" value="Closet/drawers">Closet/drawers<br>
-        <input type="checkbox" name="normal_amenities" value="TV">TV<br>
-        <input type="checkbox" name="normal_amenities" value="Heat">Heat<br>
-        <input type="checkbox" name="normal_amenities" value="Air conditioning">Air conditioning<br>
-        <input type="checkbox" name="normal_amenities" value="Breakfast, coffee, tea">Breakfast, coffee, tea<br>
-        <input type="checkbox" name="normal_amenities" value="Desk/workspace">Desk/workspace<br>
-        <input type="checkbox" name="normal_amenities" value="Fireplace">Fireplace<br>
-        <input type="checkbox" name="normal_amenities" value="Iron">Iron<br>
-        <input type="checkbox" name="normal_amenities" value="Hair dryer">Hair dryer<br>
-        <input type="checkbox" name="normal_amenities" value="Pets in the house">Pets in the house<br>
-
-        <p>Safety amenities</p>
-        <input type="checkbox" name="safety_amenities" value="Smoke detector">Smoke detector<br>
-        <input type="checkbox" name="safety_amenities" value="Carbon monoxide detector">Carbon monoxide detector<br>
-        <input type="checkbox" name="safety_amenities" value="First aid kit">First aid kit<br>
-        <input type="checkbox" name="safety_amenities" value="Safety card">Safety card<br>
-        <input type="checkbox" name="safety_amenities" value="Fire extinguisher">Fire extinguisher<br>
-        <input type="checkbox" name="safety_amenities" value="Lock on bedroom door">Lock on bedroom door<br>
-
-        <p>What spaces can guests use?</p>
-        <input type="checkbox" name="bonus_space" value="Pool">Pool<br>
-        <input type="checkbox" name="bonus_space" value="Kitchen">Kitchen<br>
-        <input type="checkbox" name="bonus_space" value="Washer">Laundry - washer<br>
-        <input type="checkbox" name="bonus_space" value="Dryer">Laundry - dryer<br>
-        <input type="checkbox" name="bonus_space" value="Parking">Parking<br>
-        <input type="checkbox" name="bonus_space" value="Elevator">Elevator<br>
-        <input type="checkbox" name="bonus_space" value="Hot tub">Hot tub<br>
-        <input type="checkbox" name="bonus_space" value="Gym">Gym<br>
-
-        <label for="rate">Rate?</label>
-        <input type="number" name="rate">
-
-        <input type="file" name="image" accept="image/*">
-
-        <input type="submit" value="Submit">
-
-    </form>
+            </div>
+            <div class="col-5 hint">
+            </div>
+        </div>
+    </div>
 </body>
 </html>

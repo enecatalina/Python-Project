@@ -122,5 +122,5 @@ def view(request, user_id):
     return render(request, "view.html", context)
 
 def logout(request):
-    request.session['user_id']= none
+    request.session['user_id'] = None
     return redirect(reverse('users:index'))
