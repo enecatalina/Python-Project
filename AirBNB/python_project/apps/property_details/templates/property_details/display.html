@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'property_details/styles.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous"> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'property_details/css/styles.css' %}" />
     <title>Listing</title>
 </head>
 <body>
+<<<<<<< HEAD
     <img src="/property/media/{{requested_listing.photo1}}" alt="Listing Photo">
     <a href="/property">Home</a>
     <p>Listing Type: {{ requested_listing.listing_type}}</p>
@@ -37,5 +39,143 @@
     <p>{{requested_listing.safety_amenities}}</p>
     <p>Bonus Space:</p>
     <p>{{requested_listing.bonus_spaces}}</p>
+=======
+    <div class="navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">AirBnb</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Messages
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add">Host/Create listing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <img id="banner_pic" class="w-100" src="/media/{{requested_listing.photo1}}" alt="Listing Photo">
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-7 ">
+                <div class="row">
+                    <h3>{{ requested_listing.title}} / {{ requested_listing.property_type}}</h3>
+                </div>
+                <div class="row">
+                    <div class="col listing_header">
+                        
+                        <p>{{ requested_listing.room_type}} - {{ requested_listing.city}}</p>
+                        <p>Hosted by {{ requested_listing.host_user.first_name }} - <a href="#">Concact Host</a></p>
+                        <h6>{{requested_listing.guests}} guests | {{ requested_listing.beds}} beds | {{ requested_listing.bathrooms}} bath </h6>
+                    </div>
+                    <div class="col listing_header">
+                        <p>{{ requested_listing.street_one}}</p>
+                        <p>{{ requested_listing.street_two}}</p>
+                        <p>{{ requested_listing.city}}, {{ requested_listing.state}}, {{ requested_listing.zip_code}}</p>
+                        <p>{{ requested_listing.Country}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <p>{{requested_listing.description}}</p>
+                </div>
+                <div class="row top-border">
+                    <h6>Amenities:</h6>
+                </div>
+                <div class="row">
+                    {% for amenity in normal %}
+                        <ul>-{{amenity.name}}</ul>
+                    {% endfor %}
+                </div>
+                <div class="row top-border">
+                    <h6>Safety Amenities:</h6>
+                </div>
+                <div class="row">
+                    {% for amenity in safety %}
+                        <ul>-{{amenity.name}}</ul>
+                    {% endfor %}
+                </div>
+                <div class="row top-border">
+                    <h6>Bonus Spaces:</h6>
+                </div>
+                <div class="row">
+                    {% for item in bonus %}
+                        <ul>-{{item.name}}</ul>
+                    {% endfor %}
+                </div>
+                <div class="row top-border">
+                    {% if request.session.user_id != None%} 
+                    <form class="w-100" action="/create_review" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name='listing_id' value="{{requested_listing.id}}">
+                        <input type="hidden" name='user' value="{{request.session.user_id}}">
+                        <div class="row review">
+                            <h5>Rating:</h5>
+                            <input type="number" name="rating" min='0' max="5" step=".5">
+                        </div>
+                        
+                        <textarea class="w-100" name="review" cols="30" rows="2" maxlength="1000" placeholder="Your review.."></textarea>
+                        <input class="float-right btn btn-outline-primary btn-sm" type="submit" value="Submit Review">
+                    </form>
+                    {% endif %}
+                </div>
+                {% for review in listing_reviews %}
+                <div class="review">
+                    <div class="row">
+                        <h3>{{review_count}} Reviews</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>{{review.rated_by.first_name}}</p>
+                            <p>{{review.created_at}}</p> 
+                        </div>
+                        <div class="col">
+                            <p>{{review.rating}}</p> 
+                        </div>
+                    </div>    
+                    <div class="row">
+                        <p>{{review.content}}</p> 
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-5">
+                <form class="reservation w-100" action="#">
+                    <div class="row bg-dark">
+                        <h4 >From ${{requested_listing.rate}} per night</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="start_date">Check In</label>
+                            <input class="w-100" type="date" name="start_date">
+                        </div>
+                        <div class="col">
+                            <label for="end_date">Check Out</label>
+                            <input class="w-100"type="date" name="end_date">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="guest_label" for="guests">Guests</label>
+                        <input class="w-100" type="number" name="guests" value="0" min="0" max="16">
+                        <input class="request_book" type="submit" value="Request a Book">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+>>>>>>> upstream/master
 </body>
 </html>

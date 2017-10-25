@@ -13,68 +13,88 @@
 </head>
 
 <body>
-    <div class="background">
+    <div class="container center_div">
         <h1>Welcome to Airbnb!</h1>
         <h3> Sign up for an account </h3>
         <form action='/airbnb/create' method='post'>
-            <div class="form-group">
-                {% csrf_token %} 
-                First Name:<input class="first_name" type='text' name='first_name'> 
-            </div>
-            <div class="form-group">
-                Last Name:<input class="last_name" type='text' name='last_name'> 
-            </div>
-            <div class="form-group">
-                Birthday: <input class="birthday" type="date" name='birthday'> 
-            </div>
-            <div class="form-group">
-                Email:<input class="email" type='text' name='email'> 
-            </div>
-            <div class="form-group">
-                Password:<input class="pw" type='password' name='password'>
-            </div>
-            <div class="form-group">
-                Confirm Password:<input class="cpw" type='password' name='confirm_password'>
-            </div>
-            <div class="form-group">
-                Phone Number:<input class="phone_number" type='text' name='phone_number'>
-            </div>
-            <div class="form-group">
-                    Gender:
-                    <select name="gender">
-                        <option value="F">Select one</option>
-                        <option value="F">Female</option>
-                        <option value="M">Male</option>
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="exampleInputEmail1">First Name:</label>
+                        <input type="text" class="form-control col-5" name='first_name' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter first name">
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail1">Last Name:</label>
+                        <input type="text" class="form-control col-5"  name='last_name' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter last name">
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail1">Birthday:</label>
+                        <input type="date" class="form-control col-5" name='birthday' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter last name">
+                     </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail1">Email:</label>
+                        <input type="email" class="form-control col-5" name='email' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail1">Password:</label>
+                        <input type="password" class="form-control col-5" name='password' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password">
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail1">Confirm Password:</label>
+                        <input type="password" class="form-control col-5" name='confirm_password' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="exampleInputEmail1">Phone Number:</label>
+                        <input type="text" class="form-control col-5" name='phone_number' id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Enter password">
+                    </div>
+                    <div class="form-group">
+                            <label>Gender:</label>
+                            <select class="form-control col-5" name="gender">
+                                <option value="F">Select one</option>
+                                <option value="F">Female</option>
+                                <option value="M">Male</option>
+                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Language:</label>
+                        <select class="form-control col-5" name="preferred_language">
+                            <option value="EN">Select one</option>
+                            <option value="EN">English</option>
+                            <option value="SP">Spanish</option>
+                            <option value="FR">French</option>
+                            <option value="SW">Swahili</option>
                     </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Currency:</label>
+                        <select class="form-control col-5" name="preferred_currency">
+                            <option value="USD">Select one</option>
+                            <option value="USD">USD</option>
+                            <option value="AUD">AUD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                    </select>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail1">Location:</label>
+                        <input type="text" class="form-control col-5" name='location' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter location">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group row">
+                    <label for="exampleInputEmail1">Describe Yourself:</label>
+                    <textarea type="text" class="form-control col-5" name="user_description" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Enter description">
+                        </textarea>
+                </div>
             </div>
                 <div class="form-group">
-                    Preferred Language:
-                    <select name="preferred_language">
-                        <option value="EN">Select one</option>
-                        <option value="EN">English</option>
-                        <option value="SP">Spanish</option>
-                        <option value="FR">French</option>
-                        <option value="SW">Swahili</option>
-                </select>
-                </div>
-                <div class="form-group">
-                    Preferred Currency:
-                    <select name="preferred_currency">
-                        <option value="USD">Select one</option>
-                        <option value="USD">USD</option>
-                        <option value="AUD">AUD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="GBP">GBP</option>
-                </select>
-                </div>
-                <div class="form-group">
-                Location: <input class="location" type='text' name='location'>
-                </div>
-                <div class="form-group">
-                Describe Yourself: <textarea name="user_description" id="description"></textarea>
-                </div>
-                <div class="form-group">
-                <input class="submit" type='submit' value='Register!'> 
+                    <input class="submit" type='submit' value='Register!'> 
                 </div>
                 {% if messages %}
                     <ul class="messages">
@@ -85,21 +105,33 @@
                 {% endif %}
         </form>
         </div>
-        <div class="login">
-            <h4> Already a user?</h4>
-            <form action='/airbnb/login' method='post'>
-                <div class="form-group">
-                {% csrf_token %} 
-                Email: <input class="email" type='text' name='email'> 
-                </div>
-                <div class="form-group">
-                Password:<input class="pw" type='password' name='password'>
-                </div>
-                <div class="form-group">
-                <input class="login" type='submit' value='Login'>
-                </div>
-            </form>
-        </div>
-    </div>
+</body>
+</html>
 
-    <body>
+        <!-- <div class="form-group">
+            {% csrf_token %} First Name:<input class="first_name" type='text' name='first_name'>
+        </div>
+        <div class="form-group">
+            Last Name:<input class="last_name" type='text' name='last_name'>
+        </div>
+        <div class="form-group">
+            Birthday: <input class="birthday" type="date" name='birthday'>
+        </div>
+        <div class="form-group">
+            Email:<input class="email" type='text' name='email'>
+        </div>
+        <div class="form-group">
+            Password:<input class="pw" type='password' name='password'>
+        </div>
+        <div class="form-group">
+            Confirm Password:<input class="cpw" type='password' name='confirm_password'>
+        </div>
+        <div class="form-group">
+            Phone Number:<input class="phone_number" type='text' name='phone_number'>
+        </div> -->
+        <!-- <div class="form-group">
+            Location: <input class="location" type='text' name='location'>
+        </div> -->
+        <!-- <div class="form-group">
+            Describe Yourself: <textarea name="user_description" id="description"></textarea>
+        </div> -->
