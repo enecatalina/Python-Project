@@ -10,36 +10,6 @@
     <title>Listing</title>
 </head>
 <body>
-<<<<<<< HEAD
-    <img src="/property/media/{{requested_listing.photo1}}" alt="Listing Photo">
-    <a href="/property">Home</a>
-    <p>Listing Type: {{ requested_listing.listing_type}}</p>
-    <p>Property Type: {{ requested_listing.property_type}}</p>
-    <p>Room Type: {{ requested_listing.room_type}}</p>
-    {% if requested_listing.ded_space == 1 %}
-    <p>Is this a dedicated space for guests: Yes </p>
-    {% else %}
-    <p>Is this a dedicated space for guests: No </p>
-    {% endif %}
-    <p>Number of beds: {{ requested_listing.beds}}</p>
-    <p>Type of bed: {{ requested_listing.bedtype}}</p>
-    <p>Common space: {{requested_listing.com_space}}</p>
-    <p>Number of bathrooms: {{ requested_listing.bathrooms}}</p>
-    <p>Address:</p>
-    <p>{{ requested_listing.street_one}}</p>
-    <p>{{ requested_listing.street_two}}</p>
-    <p>{{ requested_listing.city}}, {{ requested_listing.state}}, {{ requested_listing.zip_code}}</p>
-    <p>{{ requested_listing.Country}}</p>
-    {% if photo1 != '' %}
-    
-    {% endif %}
-    <p>Amenities:</p>
-    <p>{{requested_listing.normal_amenities}}</p>
-    <p>Safety Amenities:</p>
-    <p>{{requested_listing.safety_amenities}}</p>
-    <p>Bonus Space:</p>
-    <p>{{requested_listing.bonus_spaces}}</p>
-=======
     <div class="navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand" href="/">AirBnb</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02"
@@ -153,7 +123,7 @@
                 {% endfor %}
             </div>
             <div class="col-5">
-                <form class="reservation w-100" action="#">
+                <form class="reservation w-100" action="{% url 'trips:booktrip' requested_listing.id %}">
                     <div class="row bg-dark">
                         <h4 >From ${{requested_listing.rate}} per night</h4>
                     </div>
@@ -176,6 +146,5 @@
             </div>
         </div>
     </div>
->>>>>>> upstream/master
 </body>
 </html>
