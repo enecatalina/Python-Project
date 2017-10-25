@@ -83,6 +83,5 @@ def view(request, user_id):
     return render(request, "view.html", context)
 
 def logout(request):
-    current_user = User.objects.get(id=request.session['user_id'])
-    current_user.delete()
+    request.session['user_id'] = None
     return redirect(reverse('users:index'))
