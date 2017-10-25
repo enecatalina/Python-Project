@@ -109,6 +109,7 @@ def update(request, user_id):   #How to run validations thorugh an update?
     person.preferred_currency = request.POST.get('preferred_currency',  "")
     person.location = request.POST.get('location', "")
     person.user_description = request.POST.get('user_description', "")
+    person.profile_pic = request.FILES['profile_pic']
     person.save()
 
     return redirect(reverse("users:edit", args=(user_id)))
