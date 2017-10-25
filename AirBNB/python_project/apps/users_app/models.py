@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from datetime import datetime
 from django.core.validators import RegexValidator
+from django.core.files import File
 import re
 import md5
 import bcrypt
@@ -89,6 +90,7 @@ class User(models.Model):
     preferred_currency = models.CharField(max_length=3, choices=currency_choices, default='USD')
     location = models.TextField(max_length=200)
     user_description = models.TextField()
+    profile_pic= models.ImageField(upload_to="profile_pics", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
