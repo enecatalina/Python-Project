@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Vacation Destination!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <h1>Find the perfect vacation spot for you!</h1>
+    {% for listing in all_listing %}
+    <div class="image">
+        <img src="/property/media/{{listing.photo1}}" alt="Listing Photo">
+    </div>
+     {{all_listing.photo1}}
+     <div class"listing_heading">
+        <h2><a href="/trips/show/{{ listing.id }}">Amazing home in..</a></h2>
+        <p>Listing Type: {{ listing.listing_type }}</p>
+        <p>Property Type: {{ listing.property_type }}</p>
+        <p>Type of Rooms: {{ listing.room_type }}</p>
+        <p>Guest Allowed: {{ listing.guests }}</p>
+
+     </div>
+     {% endfor %}
+</body>
+</html>

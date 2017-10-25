@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^property/', include('apps.property_details.urls', namespace='property')),
     url(r'^airbnb/', include('apps.users_app.urls', namespace="users")),
+    url(r'^trips/', include('apps.trips.urls', namespace="trips")),
 ]

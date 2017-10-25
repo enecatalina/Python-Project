@@ -9,6 +9,7 @@
     <title>Listing</title>
 </head>
 <body>
+    <img src="/property/media/{{requested_listing.photo1}}" alt="Listing Photo">
     <a href="/property">Home</a>
     <p>Listing Type: {{ requested_listing.listing_type}}</p>
     <p>Property Type: {{ requested_listing.property_type}}</p>
@@ -30,13 +31,11 @@
     {% if photo1 != '' %}
     
     {% endif %}
-    <img src="/property/media/{{requested_listing.photo1}}" alt="Listing Photo">
     <p>Amenities:</p>
     <p>{{requested_listing.normal_amenities}}</p>
     <p>Safety Amenities:</p>
     <p>{{requested_listing.safety_amenities}}</p>
     <p>Bonus Space:</p>
     <p>{{requested_listing.bonus_spaces}}</p>
-    
 </body>
 </html>
