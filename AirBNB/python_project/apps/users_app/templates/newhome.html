@@ -15,17 +15,28 @@
 <body>
     <div class="header">
         <h1>Welcome, {{show_user.first_name}} {{show_user.last_name}}</h1>
-        <br>
-        <p> You have been successfully logged in {{show_user.email}}</p>
-    <form action="{% url 'users:home' %}">
+    <form action="{% url 'users:logout' %}">
+        <div class="form-group">
         {% csrf_token %}
         <input type='submit' value='Log Out'>
+        </div>
+    </form>
+    <form action="{% url 'users:edit' show_user.id %}">
+        <div class="form-group">
+        {% csrf_token %}
+        <input type='submit' value='Edit Profile'>
+        </div>
     </form>
     </div>
     <h1>Airbnb</h1>
     <p>Book unique homes and experience a city like a local.</p>
-    <input type="text" value="search">
-    <input type='submit' value='Search'>
+        <input type="text" value="search">
+        <input type='submit' value='Search'>
+       
+    
 </body>
 
 </html>
+
+<!-- <br>
+<p> You have been successfully logged in {{show_user.email}}</p> -->
