@@ -124,17 +124,7 @@
             </ul>
             {% endif %}
         </form>
-    </div>
-            <form action="{% url 'users:view' user_edit.id %}">
-                <div class="form-group">
-                    {% csrf_token %}
-                    <input type='submit' value='View Profile'>
-                </div>
-            </form>
+    </body>
+</html>
 
-            <form action="{% url 'users:newhome' %}">
-                <div class="form-group">
-                    {% csrf_token %}
-                    <input type='submit' value='Go Home'>
-                </div>
-            </form>
+
