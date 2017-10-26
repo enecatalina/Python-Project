@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from models import listing, normal_amenities, safety_amenities, bonus_spaces, review
 from ..users_app.models import User
+from dummy import create_dummy_users, create_dummy_listings
 
 
 # Create your views here.
@@ -76,3 +77,8 @@ def update(request, listing_id):
 
 def destroy(request, listing_id):
     return HttpResponse("this is the destroy page")
+
+def dummy(request):
+    create_dummy_users()
+    create_dummy_listings()
+    return redirect('/')
