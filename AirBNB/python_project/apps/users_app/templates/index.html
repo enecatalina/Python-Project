@@ -105,6 +105,11 @@
                 {% endif %}
         </form>
         </div>
+        <h3> Already an user? </h3>
+        <form action="{% url 'users:logme' %}">
+            <div class="form-group">
+                <input class="submit" type='submit' value='Sign In!'>
+            </div>
 </body>
 </html>
 
