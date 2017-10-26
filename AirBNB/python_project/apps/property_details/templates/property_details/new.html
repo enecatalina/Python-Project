@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
+                    <a class="nav-link" href="{% url 'users:view' request.session.user_id %}">Profile</a>
                 </li>
             </ul>
         </div>
@@ -80,18 +80,18 @@
                     <h4>Sleeping arrangements</h4>
                     <label for="bedtype">Bedroom 1</label>
                     <select class="w-75"name="bedtype">
-                        <option value="Do">Double</option>
-                        <option value="Qu">Queen</option>
-                        <option value="Ki">King</option>
-                        <option value="Si">Single</option>
-                        <option value="So">Sofa bed</option>
+                        <option value="Double">Double</option>
+                        <option value="Queen">Queen</option>
+                        <option value="King">King</option>
+                        <option value="Single">Single</option>
+                        <option value="Sofa bed">Sofa bed</option>
                     </select>
                 
                     <label for="common_space">Common Spaces</label>
                     <select class="w-75"name="common_space">
-                        <option value="Co">Couch</option>
-                        <option value="Fl">Floor Mattress</option>
-                        <option value="So">Sofa bed</option>
+                        <option value="Couch">Couch</option>
+                        <option value="Floor Mattress">Floor Mattress</option>
+                        <option value="Sofa bed">Sofa bed</option>
                     </select>
                 
                     <label for="bathrooms">Bathrooms</label>

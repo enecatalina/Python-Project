@@ -37,6 +37,7 @@ class listingManager(models.Manager):
         #Try grabbing an image if it was uploaded
         try:
             image = postFILES['image']
+            print image
         except:
             image = ''
             print 'No image'

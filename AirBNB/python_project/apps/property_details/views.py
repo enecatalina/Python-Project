@@ -6,13 +6,17 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from models import listing, normal_amenities, safety_amenities, bonus_spaces, review
 from ..users_app.models import User
+from dummy import create_dummy_users, create_dummy_listings
 
 
 # Create your views here.
 def index(request):
     all_listings = listing.objects.all()
-    # search_listing = all_listings.filter()
-    context = {'listings': all_listings}
+    search_listing = all_listings.filter(city=request.POST.get('city'))
+    context = {
+        'listings': all_listings,
+        'listings_res': search_listing
+    }
     return render(request, 'property_details/index.html', context)
 
 def add(request):
@@ -73,3 +77,8 @@ def update(request, listing_id):
 
 def destroy(request, listing_id):
     return HttpResponse("this is the destroy page")
+
+def dummy(request):
+    create_dummy_users()
+    create_dummy_listings()
+    return redirect('/')

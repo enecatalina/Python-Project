@@ -18,20 +18,12 @@
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/">Home
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item active">
                 <a class="nav-link" href="#">Messages
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/add">Host/Create listing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
             </li>
         </ul>
     </div>
@@ -48,6 +40,7 @@
         </form>
     </div>
     <h6>This is where we need to show users information and picture</h6>
+<<<<<<< HEAD
     <img src="/media/{{user_profile.profile_pic}}" alt="img" class="img-responsive img-rounded">
     <!-- <form action="{% url 'users:newhome' %}">
         <div class="form-group">
@@ -55,5 +48,9 @@
             <input type='submit' value='Go Home' class="btn btn-default">
         </div>
     </form> -->
+=======
+   <img src="/media/{{user_profile.profile_pic}}" alt="img" class="img-responsive img-rounded">
+   <p>{{user_profile.user_description}}</p>
+>>>>>>> upstream/master
     </body>
     </html>
