@@ -1,34 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Airbnb, Inc</title>
-    {% load static %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous"> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users_app/css/styles.css' %}" />
+    <title>My Profile</title>
 </head>
-
+<div class="navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">AirBnb</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Messages
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/add">Host/Create listing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Profile</a>
+            </li>
+        </ul>
+    </div>
+</div>
 <body>
-    <h1> Hey, I'm {{user_profile.first_name}}! </h1>
-    <!-- <p>{{user_profile.profile_pic}}</p> -->
-    <img src="/media/{{user_profile.profile_pic}}" alt="img" class="img-responsive img-rounded">
-    <p> {{user_profile.location}}. Joined on {{user_profile.created_at}}</p>
-    <form action="{% url 'users:edit' user_profile.id %}">
-        <div class="form-group">
-            {% csrf_token %}
-            <input type='submit' value='Edit Profile'>
-        </div>
-    <p>About me</p>
-    </form>
-    <form action="{% url 'users:newhome' %}">
-        <div class="form-group">
-            {% csrf_token %}
-            <input type='submit' value='Go Home'>
-        </div>
-    </form>
+    <div class="jumbotron">
+        <h1>Hey, I'm {{user_profile.first_name}}!</h1>
+        <p>{{user_profile.location}}. Joined on {{user_profile.created_at}}</p>
+        <form action="{% url 'users:edit' user_profile.id %}">
+            <div class="form-group">
+                {% csrf_token %}
+                <input type='submit' value='Edit Profile' class="btn btn-default">
+            </div>
+        </form>
+    </div>
+    <h6>This is where we need to show users information and picture</h6>
+   <img src="/media/{{user_profile.profile_pic}}" alt="img" class="img-responsive img-rounded">
     </body>
-
     </html>

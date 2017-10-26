@@ -77,7 +77,7 @@ def login(request):
     else:
         user = User.objects.get(email=request.POST['email'])
         request.session['user_id'] = user.id 
-    return redirect(reverse('users:newhome'))
+    return redirect(reverse('users:home'))
 
 
 # def success_login(request):
@@ -112,8 +112,7 @@ def update(request, user_id):   #How to run validations thorugh an update?
     person.profile_pic = request.FILES.get('profile_pic', "")
     person.save()
 
-
-    return redirect(reverse("users:edit", args=(user_id)))
+    return redirect(reverse("users:view", args=(user_id)))
 
 def view(request, user_id):
     current_user = User.objects.get(id=request.session['user_id'])
