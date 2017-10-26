@@ -38,6 +38,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'users:view' request.session.user_id %}">Profile</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:logout' %}">Log Out</a>
+                    </li>
                 {% endif %}
             </ul>
         </div>
@@ -63,8 +66,24 @@
                     <a href="/display/{{property.id}}" class="btn btn-primary">See listing</a>
                 </div>
             </div>
-            {% endfor %}
+             {% endfor %}
         </div>
     </div>
 </body>
 </html>
+
+<!-- Edited by co 
+<form action="{% url 'property:homepage' %}" method='POST'>
+    <input type="submit" class="btn" value="Search">
+    {% csrf_token %}
+ {% if not listings_res %}
+ {% for properties in listings_res %}
+<div class="card my_cards" style="width: 16rem;">
+    <img class="card-img-top" src="/media/{{properties.photo1}}" alt="Listing Image">
+    <div class="card-body">
+        <h6 class="card-title">${{properties.rate}}, {{properties.beds}} Beds, {{properties.listing_type}}</h6>
+        <p class="card-text">{{properties.room_type}}</p>
+        <a href="/display/{{properties.id}}" class="btn btn-primary">See listing</a>
+    </div>
+</div>
+{% endfor %} {% endif %} -->

@@ -11,8 +11,11 @@ from ..users_app.models import User
 # Create your views here.
 def index(request):
     all_listings = listing.objects.all()
-    # search_listing = all_listings.filter()
-    context = {'listings': all_listings}
+    search_listing = all_listings.filter(city=request.POST.get('city'))
+    context = {
+        'listings': all_listings,
+        'listings_res': search_listing
+    }
     return render(request, 'property_details/index.html', context)
 
 def add(request):
