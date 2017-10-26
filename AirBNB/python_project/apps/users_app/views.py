@@ -111,6 +111,10 @@ def update(request, user_id):   #How to run validations thorugh an update?
     person.user_description = request.POST.get('user_description', "")
     person.profile_pic = request.FILES.get('profile_pic', "")
     person.save()
+<<<<<<< HEAD
+=======
+
+>>>>>>> a7ddea72fb212a4b2618af23fa022b6ff57ce310
     return redirect(reverse("users:view", args=(user_id)))
 
 def view(request, user_id):
