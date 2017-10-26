@@ -10,8 +10,6 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 import bcrypt
 
-def home(request):
-    return render(request, 'home.html')
 
 def index(request):
     u = User.objects.all()
@@ -27,13 +25,6 @@ def logme(request):
         'users': u
     }
     return render(request, 'logme.html', context)
-
-def newhome(request):
-    user = User.objects.get(id=request.session['user_id'])
-    context = {
-        'show_user': user
-    }
-    return render(request, "newhome.html", context)
 
 def create(request):
     first_name = request.POST['first_name']
@@ -63,7 +54,7 @@ def create(request):
             gender=gender, preferred_language=preferred_language, preferred_currency=preferred_currency, location=location, user_description=user_description)
         new_user.save()
         request.session['user_id'] = new_user.id
-        return redirect(reverse('users:newhome'))
+        return redirect(reverse('property:homepage'))
 
 
 def login(request):
@@ -77,15 +68,8 @@ def login(request):
     else:
         user = User.objects.get(email=request.POST['email'])
         request.session['user_id'] = user.id 
-    return redirect(reverse('users:home'))
+    return redirect(reverse('property:homepage'))
 
-
-# def success_login(request):
-#     user = User.objects.get(id=request.session['user_id'])
-#     context = {
-#         'show_user': user
-#     }
-#     return render(request, "newhome.html", context)
 
 def edit(request, user_id):
     current_user = User.objects.get(id=request.session['user_id'])
@@ -100,6 +84,7 @@ def update(request, user_id):   #How to run validations thorugh an update?
     print user_id
     person = User.objects.get(id=user_id)
     person.first_name = request.POST.get('first_name', "")
+    print person.first_name
     person.last_name = request.POST.get('last_name', "")
     person.email = request.POST.get('email', "")
     person.password = request.POST.get('password', "")
@@ -111,7 +96,8 @@ def update(request, user_id):   #How to run validations thorugh an update?
     person.user_description = request.POST.get('user_description', "")
     person.profile_pic = request.FILES.get('profile_pic', "")
     person.save()
-
+    print "I was updated"
+    
     return redirect(reverse("users:view", args=(user_id)))
 
 def view(request, user_id):
@@ -124,4 +110,4 @@ def view(request, user_id):
 
 def logout(request):
     request.session['user_id'] = None
-    return redirect(reverse('users:index'))
+    return redirect(reverse('property:homepage'))
