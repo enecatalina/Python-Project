@@ -37,6 +37,7 @@
     </div>
 </div>
 <body>
+<<<<<<< HEAD
     <div class="jumbotron">
         <h1>Hey, I'm {{user_profile.first_name}}!</h1>
         <p>{{user_profile.location}}. Joined on {{user_profile.created_at}}</p>
@@ -49,6 +50,13 @@
     </div>
     <h6>This is where we need to show users information and picture</h6>
     <!-- <form action="{% url 'users:newhome' %}">
+=======
+    <h1> Hey, I'm {{user_profile.first_name}}! </h1>
+    <!-- <p>{{user_profile.profile_pic}}</p> -->
+    <img src="/media/{{user_profile.profile_pic}}" alt="img" class="img-responsive img-rounded">
+    <p> {{user_profile.location}}. Joined on {{user_profile.created_at}}</p>
+    <form action="{% url 'users:edit' user_profile.id %}">
+>>>>>>> upstream/master
         <div class="form-group">
             {% csrf_token %}
             <input type='submit' value='Go Home' class="btn btn-default">

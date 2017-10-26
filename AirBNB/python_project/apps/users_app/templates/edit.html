@@ -131,10 +131,3 @@
                     <input type='submit' value='View Profile'>
                 </div>
             </form>
-
-            <form action="{% url 'users:newhome' %}">
-                <div class="form-group">
-                    {% csrf_token %}
-                    <input type='submit' value='Go Home'>
-                </div>
-            </form>
