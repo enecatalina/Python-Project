@@ -9,12 +9,29 @@
     {% load static %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
         crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/logme.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'users_app/css/logme.css' %}">
 </head>
-
 <body>
+    <div class="navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">AirBnb</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Messages
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </div>
         <div class="container center_div">
-            <h4> Don't have an account?</h4>
             <form action="{% url 'users:index' %}">
                 <div class="form-group">
                     {% csrf_token %}

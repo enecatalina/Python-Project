@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
         crossorigin="anonymous">
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'property_details/css/styles.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'property_details/css/styles.css' %}"/>
     <title>Index</title>
 </head>
 <body>
@@ -39,10 +39,12 @@
                         <a class="nav-link" href="{% url 'users:view' request.session.user_id %}">Profile</a>
                     </li>
                 {% endif %}
-                
-                
             </ul>
         </div>
+    </div>
+    <div class="jumbotron">
+        <h1>AirBnb</h1>
+        <p>Life is a voyage of discovery.</p>
     </div>
     <div class="container">
         <div class="row">
