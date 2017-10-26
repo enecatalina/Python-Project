@@ -13,6 +13,8 @@
 
 <body>
     <h1> Hey, I'm {{user_profile.first_name}}! </h1>
+    <!-- <p>{{user_profile.profile_pic}}</p> -->
+    <img src="/media/{{user_profile.profile_pic}}" alt="img" class="img-responsive img-rounded">
     <p> {{user_profile.location}}. Joined on {{user_profile.created_at}}</p>
     <form action="{% url 'users:edit' user_profile.id %}">
         <div class="form-group">
