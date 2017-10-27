@@ -6,11 +6,10 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from ..property_details.models import listing
 from ..users_app.models import User
-from ..trips.models import Trips
+from models import Trips
 from datetime import date
 
 # Create your views here.
-
 def booking(request):
     all_listing = listing.objects.all()
     context = {
@@ -27,7 +26,7 @@ def showlocation(request, listing_id):
         }
     return render(request, 'trips/show.html', context)
 
-def bookatrip(request,listing_id):
+def bookatrip(request, listing_id):
     current_user = User.objects.get(id=request.session['user_id'])
     listing_id = listing.objects.get(id=listing_id)
     check = Trips.objects.bookatripValidation(request.POST)
