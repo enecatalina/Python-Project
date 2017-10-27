@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django.core.files import File
 from django.db import models
-from ..users_app.models import User
+from ..users_app.models import *
 
 
 # Create your models here.
@@ -156,3 +156,5 @@ class review(models.Model):
     rated_by = models.ForeignKey(User, related_name='ratings_given')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+

@@ -34,7 +34,8 @@ label {
 #banner_pic{
     height: 100%;
     max-height: 620px;
-    margin-bottom:25px; 
+    margin: 0 auto 25px; 
+    max-width: 1400px;
 }
 .left_main_content{
     max-width: 630px;

@@ -13,7 +13,6 @@ urlpatterns = [
     url(r'^(?P<user_id>\d+)/update$', views.update, name="update"),     #THis route processes the edit form
     url(r'^(?P<user_id>\d+)/view$', views.view, name="view"),           #this route displays the users profile
     url(r'^logout$', views.logout, name="logout"),                      #This route logs the user out (using that session) and returns us to the registration page
-
 ]
 
 

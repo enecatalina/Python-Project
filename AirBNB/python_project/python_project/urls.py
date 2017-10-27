@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^', include('apps.property_details.urls', namespace='property')),
     url(r'^airbnb/', include('apps.users_app.urls', namespace="users")),
     url(r'^trips/', include('apps.trips.urls', namespace="trips")),
+    url(r'^messages/', include('apps.message_app.urls', namespace="messages")),
 ]

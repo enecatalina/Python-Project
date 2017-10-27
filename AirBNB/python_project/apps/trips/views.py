@@ -11,7 +11,6 @@ from datetime import datetime
 
 
 # Create your views here.
-
 def booking(request):
     all_listing = listing.objects.all()
     context = {
@@ -28,9 +27,10 @@ def showlocation(request, listing_id):
         }
     return render(request, 'trips/show.html', context)
 
-def bookatrip(request,listing_id):
+def bookatrip(request, listing_id):
     if request.session['user_id'] == None:
         return redirect(reverse('users:index'))
+    current_user = User.objects.get(id=request.session['user_id'])
     listing_id = listing.objects.get(id=listing_id)
     current_user = User.objects.get(id=request.session['user_id'])
     check = Trips.objects.bookatripValidation(request.POST)

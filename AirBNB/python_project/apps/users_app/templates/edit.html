@@ -10,114 +10,131 @@
     <link rel="stylesheet" type="text/css" href="{% static 'users_app/css/logme.css' %}" />
     <title>Edit Profile</title>
 </head>
-<div class="navbar navbar-expand navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">AirBnb</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Messages
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/add">Host/Create listing</a>
-            </li>
-            {% if request.session.user_id == None %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'users:logme' %}">Log In</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'users:index' %}">Sign Up</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'users:view' request.session.user_id %}">Profile</a>
-            </li>
-            {% endif %}
-        </ul>
-    </div>
-</div>
-<h3> {{user_edit.first_name}}</h3>
-    
-        <form action="{% url 'users:update' user_edit.id %}" method='POST' enctype="multipart/form-data">
-            {% csrf_token %} 
-                <div class="form-group">
-                    <label>First Name:</label>
-                    <input class="first_name" type='text' name='first_name' value ='{{user_edit.first_name}}'>
-                </div>
-                <div class="form-group">
-                    <label>LastName:</label>
-                    <input class="last_name" type='text' name='last_name' value ='{{user_edit.last_name}}'>
-                </div>
-                <div class="form-group">
-                    <label>Birthday:</label>
-                    <input class="birthday" type="date" name='birthday'>
-                </div>
-                <div class="form-group">
-                    <label>Email:</label>
-                    <input class="email" type='text' name='email' value ='{{user_edit.email}}'>
-                </div>
-                <div class="form-group">
-                    <label>Phone Number:</label>
-                    <input class="phone_number" type='text' name='phone_number' value ='{{user_edit.phone_number}}'>
-                </div>
-                <div class="form-group">
-                    <label>gender</label>
-                    <select name="gender">
-                                <option value="F">Select one</option>
-                                <option value="F">Female</option>
-                                <option value="M">Male</option>
-                            </select>
-                </div>
-                <div class="form-group">
-                    <label>Preferred Language:</label>
-                    <select name="preferred_language">
-                                <option value="EN">Select one</option>
-                                <option value="EN">English</option>
-                                <option value="SP">Spanish</option>
-                                <option value="FR">French</option>
-                                <option value="SW">Swahili</option>
-                        </select>
-                </div>
-                <div class="form-group">
-                    <label>Preferred Currency:</label>
-                    <select name="preferred_currency">
-                                <option value="USD">Select one</option>
-                                <option value="USD">USD</option>
-                                <option value="AUD">AUD</option>
-                                <option value="EUR">EUR</option>
-                                <option value="GBP">GBP</option>
-                        </select>
-                </div>
-                <div class="form-group">
-                    Location: <input class="location" type='text' name='location' value ='{{user_edit.location}}'>
-                </div>
-                <div class="form-group">
-                    Describe Yourself: <textarea name="user_description" id="description"></textarea>
-                </div>
-                <input type="file" name="profile_pic" accept="image/*">
-                <div class="form-group">
-                    <input class="submit" type='submit' value='Submit Changes!'>
-                </div>
-                {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.error }}" {% endif %}>{{ message }}</li>
-                        {% endfor %}
-                </ul>
+<body>
+    <div class="navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">AirBnb</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Messages
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add">Host/Create listing</a>
+                </li>
+                {% if request.session.user_id == None %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:logme' %}">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:index' %}">Sign Up</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:view' request.session.user_id %}">Profile</a>
+                </li>
                 {% endif %}
-        </form>
-    
-    </body>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+                <h3> {{user_edit.first_name}}</h3>
+        </div>
+            <div class="row">
+                <form class="w-100" action="{% url 'users:update' user_edit.id %}" method='POST' enctype="multipart/form-data">
+                    {% csrf_token %} 
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="block w-100">First Name:</label>
+                                <input class="first_name w-100" type='text' name='first_name' value='{{user_edit.first_name}}'>
+                            </div>
+                            <div class="form-group">
+                                <label class="block w-100">Birthday:</label>
+                                <input class="birthday w-100" type="date" name='birthday'>
+                            </div>
+                            <div class="form-group">
+                                <label class="block w-100">Phone Number:</label>
+                                <input class="phone_number w-100" type='text' name='phone_number' value='{{user_edit.phone_number}}'>
+                            </div>
+                            <div class="form-group">
+                                <label class="block w-100">Location:</label>
+                                <input class="location w-100" type='text' name='location' value='{{user_edit.location}}'>
+                            </div>
+                            <div class="form-group">
+                                <label  class="block w-100">Describe yourself:</label> 
+                                <textarea class="w-100" name="user_description" id="description"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="block w-100">LastName:</label>
+                                <input class="last_name w-100" type='text' name='last_name' value='{{user_edit.last_name}}'>
+                            </div>
+                            <div class="form-group">
+                                <label class="block w-100">Email:</label>
+                                <input class="email w-100" type='text' name='email' value='{{user_edit.email}}'>
+                            </div>
+                            <div class="form-group">
+                                <label class="block w-100">gender</label>
+                                <select class="w-100" name="gender">
+                                    <option value="F">Select one</option>
+                                    <option value="F">Female</option>
+                                    <option value="M">Male</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="block w-100">Preferred Language:</label>
+                                <select class="w-100" name="preferred_language">
+                                    <option value="EN">Select one</option>
+                                    <option value="EN">English</option>
+                                    <option value="SP">Spanish</option>
+                                    <option value="FR">French</option>
+                                    <option value="SW">Swahili</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="block w-100">Preferred Currency:</label>
+                                <select class="w-100" name="preferred_currency">
+                                    <option value="USD">Select one</option>
+                                    <option value="USD">USD</option>
+                                    <option value="AUD">AUD</option>
+                                    <option value="EUR">EUR</option>
+                                    <option value="GBP">GBP</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="profile_pic">Your Picture: </label>
+                            <input type="file" name="profile_pic" accept="image/*">
+                        </div>
+                        <div class="col-6">
+                            <input class="submit" type='submit' value='Submit Changes!'>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.error }}" {% endif %}>{{ message }}</li>
+                                {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
 
 

@@ -23,10 +23,37 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
+<<<<<<< HEAD
+=======
                 <li class="nav-item">
                     <a class="nav-link" href="/add">Host/Create listing</a>
                 </li>
+>>>>>>> upstream/master
+                {% if request.session.user_id == None %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:logme' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:index' %}">Sign Up</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+<<<<<<< HEAD
+                        <a class="nav-link" href="/add">Host/Create listing</a>
+                    </li>
+                    <li class="nav-item">
+=======
+>>>>>>> upstream/master
+                        <a class="nav-link" href="{% url 'users:view' request.session.user_id %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:logout' %}">Log Out</a>
+                    </li>
+                {% endif %}
+<<<<<<< HEAD
+=======
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a class="nav-link" href="{% url 'trips:mytrips' %}">My Trips</a>
                 </li>
                 {% if request.session.user_id == None %}
@@ -44,12 +71,19 @@
                     <a class="nav-link" href="{% url 'users:logout' %}">Log Out</a>
                 </li>
                 {% endif %}
+=======
+                    <a class="nav-link" href="{% url 'users:view' request.session.user_id %}">Profile</a>
+                </li>
+>>>>>>> upstream/master
+>>>>>>> upstream/master
             </ul>
         </div>
     </div>
     <div class="container-fluid">
         <div class="row">
-            <img id="banner_pic" class="w-100" src="/media/{{requested_listing.photo1}}" alt="Listing Photo">
+            <img id="banner_pic" class="w-100" 
+             {% if requested_listing.photo1 == "" %} src="/media/uploads/2017/10/no-img.png" 
+             {% else %} src="/media/{{requested_listing.photo1}}" {% endif %} alt="Listing Photo">
         </div>
     </div>
     <div class="container">
@@ -62,7 +96,7 @@
                     <div class="col listing_header">
                         
                         <p>{{ requested_listing.room_type}} - {{ requested_listing.city}}</p>
-                        <p>Hosted by {{ requested_listing.host_user.first_name }} - <a href="#">Concact Host</a></p>
+                        <p>Hosted by {{ requested_listing.host_user.first_name }} - <a href="{% url 'messages:send' requested_listing.id %}">Contact Host</a></p>
                         <h6>{{requested_listing.guests}} guests | {{ requested_listing.beds}} beds | {{ requested_listing.bathrooms}} bath </h6>
                     </div>
                     <div class="col listing_header">
@@ -160,5 +194,13 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
 </body>
 </html>
+
+<!-- request.session.message_id request.session.listing_id -->
