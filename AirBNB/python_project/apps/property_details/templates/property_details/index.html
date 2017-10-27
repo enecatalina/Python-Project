@@ -51,13 +51,17 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="input-group input-group-lg main">
+            <form class="input-group input-group-lg main" action="{% url 'property:results' %}" method='POST'>
+                    {% csrf_token %}
                 <span class="input-group-addon" id="sizing-addon1">Search</span>
                 <input type="text" class="form-control" placeholder="Try 'Chicago'" name="user_search" aria-describedby="sizing-addon1">
-            </div>
+                <input type="submit" class="btn" value="Search">
+            </form>
         </div>
         <div class="row">
-            {% for property in listings %}
+        {% if not listings_res %}
+        <p>Sorry, no homes in that area :(</p>
+            <!-- {% for property in listings %}
             <div class="card my_cards" style="width: 16rem;">
                 <img class="card-img-top" 
                 {% if property.photo1 == '' %}
@@ -72,8 +76,24 @@
                     <a href="/display/{{property.id}}" class="btn btn-primary">See listing</a>
                 </div>
             </div>
-             {% endfor %}
+             {% endfor %} -->
+        {% else %}
+             {% for properties in listings_res %}
+            <div class="card my_cards" style="width: 16rem;">
+                <img class="card-img-top" src="/media/{{properties.photo1}}" alt="Listing Image">
+                <div class="card-body">
+                    <h6 class="card-title">${{properties.rate}}, {{properties.beds}} Beds, {{properties.listing_type}}</h6>
+                    <p class="card-text">{{properties.room_type}}</p>
+                    <a href="/display/{{properties.id}}" class="btn btn-primary">See listing</a>
+                </div>
+            </div>
+            {% endfor %} 
+        {% endif %}
         </div>
+        <form action="{% url 'property:reset' %}" method='POST'>
+             {% csrf_token %}
+            <input type="submit" class="btn" value="Rest">
+        </form>
     </div>
 </body>
 </html>

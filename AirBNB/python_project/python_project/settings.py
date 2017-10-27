@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'apps.message_app',
     'apps.trips',
     'apps.property_details',
     'apps.users_app',

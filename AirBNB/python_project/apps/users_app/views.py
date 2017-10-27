@@ -9,7 +9,7 @@ from .models import User
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 import bcrypt
-from ..property_details.models import listing
+from ..property_details.models import *
 
 
 def index(request):
@@ -116,5 +116,8 @@ def view(request, user_id):
     return render(request, "view.html", context)
 
 def logout(request):
-    request.session['user_id'] = None
+    request.session['user_id'] = None   #can also do del request.session['user_id]
     return redirect(reverse('property:homepage'))
+
+
+

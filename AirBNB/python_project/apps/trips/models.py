@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from datetime import datetime
 from ..property_details.models import listing
-from ..users_app.models import User
+from ..users_app.models import *
 from datetime import timedelta
 
 class TripsManager(models.Model):
