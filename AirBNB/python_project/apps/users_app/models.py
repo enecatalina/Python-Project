@@ -98,3 +98,5 @@ class User(models.Model):
         return "<user object: {} {} {} {} {} {} {} {} {} {} {} {} {} {}>".format(self.id, self.first_name, self.last_name, self.email,
          self.birthday, self.password, self.phone_number, self.gender, self.preferred_language, self.preferred_currency, self.location, 
          self.user_description, self.created_at, self.updated_at)
+
+

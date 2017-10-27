@@ -26,8 +26,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/add">Host/Create listing</a>
                 </li>
+                {% if request.session.user_id == None %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:logme' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:index' %}">Sign Up</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:view' request.session.user_id %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:logout' %}">Log Out</a>
+                    </li>
+                {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url users:view request.session.user_id %}">Profile</a>
+                    <a class="nav-link" href="{% url 'users:view' request.session.user_id %}">Profile</a>
                 </li>
             </ul>
         </div>
@@ -47,7 +62,7 @@
                     <div class="col listing_header">
                         
                         <p>{{ requested_listing.room_type}} - {{ requested_listing.city}}</p>
-                        <p>Hosted by {{ requested_listing.host_user.first_name }} - <a href="#">Concact Host</a></p>
+                        <p>Hosted by {{ requested_listing.host_user.first_name }} - <a href="{% url 'messages:send' requested_listing.id %}">Contact Host</a></p>
                         <h6>{{requested_listing.guests}} guests | {{ requested_listing.beds}} beds | {{ requested_listing.bathrooms}} bath </h6>
                     </div>
                     <div class="col listing_header">
@@ -146,3 +161,5 @@
     </div>
 </body>
 </html>
+
+<!-- request.session.message_id request.session.listing_id -->

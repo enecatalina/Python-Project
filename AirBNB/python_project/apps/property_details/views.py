@@ -5,19 +5,34 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from models import listing, normal_amenities, safety_amenities, bonus_spaces, review
-from ..users_app.models import User
+from ..users_app.models import *
 from dummy import create_dummy_users, create_dummy_listings
 
 
 # Create your views here.
 def index(request):
     all_listings = listing.objects.all()
-    search_listing = all_listings.filter(city=request.POST.get('city'))
+    if 'city' in request.session:
+        search_listing = all_listings.filter(
+            city=request.session['city'])
+        # print search_listing.first().city
+    else: 
+        search_listing = listing.objects.all()
     context = {
-        'listings': all_listings,
         'listings_res': search_listing
     }
+    # print context['listings_res']
     return render(request, 'property_details/index.html', context)
+
+def listingResults(request):
+    city = request.POST.get('user_search')
+    request.session['city']= city 
+    # print request.session['city']
+    return redirect(reverse('property:homepage'))
+
+def reset(request):
+    del request.session['city']
+    return redirect(reverse('property:homepage'))
 
 def add(request):
     current_user = User.objects.get(id=request.session['user_id'])
@@ -68,9 +83,6 @@ def create_review(request):
         rated_by = user_reviewing
     )
     return redirect(reverse('property:display', args=request.POST['listing_id']))
-
-def messages(request):
-    return HttpResponse('This will show all your messages')
 
 def update(request, listing_id):
     return HttpResponse("this is the update page")
