@@ -24,9 +24,6 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/add">Host/Create listing</a>
-                </li>
                 {% if request.session.user_id == None %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'users:logme' %}">Log In</a>
@@ -35,6 +32,9 @@
                         <a class="nav-link" href="{% url 'users:index' %}">Sign Up</a>
                     </li>
                 {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/add">Host/Create listing</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'users:view' request.session.user_id %}">Profile</a>
                     </li>
@@ -63,7 +63,13 @@
         <p>Sorry, no homes in that area :(</p>
             <!-- {% for property in listings %}
             <div class="card my_cards" style="width: 16rem;">
-                <img class="card-img-top" src="/media/{{property.photo1}}" alt="Listing Image">
+                <img class="card-img-top" 
+                {% if property.photo1 == '' %}
+                src='/media/uploads/2017/10/no-img.png'
+                {% else %}
+                src="/media/{{property.photo1}}" 
+                {% endif %}
+                alt="Listing Image">
                 <div class="card-body">
                     <h6 class="card-title">${{property.rate}}, {{property.beds}} Beds, {{property.listing_type}}</h6>
                     <p class="card-text">{{property.room_type}}</p>

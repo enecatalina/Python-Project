@@ -103,9 +103,15 @@ def update(request, user_id):   #How to run validations thorugh an update?
 
 def view(request, user_id):
     current_user = User.objects.get(id=request.session['user_id'])
-    print current_user
+    
+    try:
+        all_user_listings = listing.objects.filter(host_user = current_user)
+    except:
+        all_user_listings = None
+        
     context = {
-        'user_profile': current_user
+        'user_profile': current_user,
+        'user_listings': all_user_listings
     }
     return render(request, "view.html", context)
 

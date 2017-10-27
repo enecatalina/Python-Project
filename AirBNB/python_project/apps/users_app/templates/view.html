@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-        crossorigin="anonymous"> {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'users_app/css/styles.css' %}" />
+        crossorigin="anonymous"> 
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <title>My Profile</title>
 </head>
 <div class="navbar navbar-expand navbar-dark bg-dark">
@@ -30,17 +31,44 @@
 </div>
 <body>
     <div class="jumbotron">
-        <h1>Hey, I'm {{user_profile.first_name}}!</h1>
-        <p>{{user_profile.location}}. Joined on {{user_profile.created_at}}</p>
-        <form action="{% url 'users:edit' user_profile.id %}">
-            <div class="form-group">
-                {% csrf_token %}
-                <input type='submit' value='Edit Profile' class="btn btn-default">
+        <div class="container">
+            <div class="row">
+                <h1>Hi, {{user_profile.first_name}}!</h1>
             </div>
-        </form>
+            <div class="row">
+                <div class="col-6">
+                    <div class="row no_margin">
+                        <p id="no_margin" class="block w-100 no_margin">You live in: {{user_profile.location}}</p>
+                        <p class="block w-100 no_margin">You joined on: {{user_profile.created_at}}</p>
+                        <p class="block w-100 no_margin">Email: {{user_profile.email}}</p>
+                        <p class="block w-100 no_margin">Phone number is: {{user_profile.phone_number}}</p>
+                        <p class="block w-100 no_margin">Gender: {{user_profile.gender}}</p>
+                        <p class="block w-100 no_margin">Language: {{user_profile.preferred_language}}</p>
+                        <p class="block w-100 no_margin">Description of yourself:</p>
+                        <p class="block w-100 no_margin">{{user_profile.user_description}}</p>
+                        <form action="{% url 'users:edit' user_profile.id %}">
+                            {% csrf_token %}
+                            <input type='submit' value='Edit Profile' class="btn btn-default">
+                        </form>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <img src="/media/{{user_profile.profile_pic}}" alt="img" class="rounded-circle">
+                </div>
+            </div>
+        </div>
     </div>
-    <h6>This is where we need to show users information and picture</h6>
-   <img src="/media/{{user_profile.profile_pic}}" alt="img" class="img-responsive img-rounded">
-   <p>{{user_profile.user_description}}</p>
-    </body>
-    </html>
+    <div class="container">
+        {% for property in user_listings %}
+        <div class="card my_cards" style="width: 16rem;">
+            <img class="card-img-top" src="/media/{{property.photo1}}" alt="Listing Image">
+            <div class="card-body">
+                <h6 class="card-title">${{property.rate}}, {{property.beds}} Beds, {{property.listing_type}}</h6>
+                <p class="card-text">{{property.room_type}}</p>
+                <a href="/display/{{property.id}}" class="btn btn-primary">See listing</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
