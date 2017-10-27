@@ -23,12 +23,6 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-<<<<<<< HEAD
-=======
-                <li class="nav-item">
-                    <a class="nav-link" href="/add">Host/Create listing</a>
-                </li>
->>>>>>> upstream/master
                 {% if request.session.user_id == None %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'users:logme' %}">Log In</a>
@@ -38,45 +32,18 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
-<<<<<<< HEAD
+                        <a class="nav-link" href="{% url 'trips:mytrips' %}">My Trips</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/add">Host/Create listing</a>
                     </li>
                     <li class="nav-item">
-=======
->>>>>>> upstream/master
                         <a class="nav-link" href="{% url 'users:view' request.session.user_id %}">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'users:logout' %}">Log Out</a>
                     </li>
                 {% endif %}
-<<<<<<< HEAD
-=======
-                <li class="nav-item">
-<<<<<<< HEAD
-                    <a class="nav-link" href="{% url 'trips:mytrips' %}">My Trips</a>
-                </li>
-                {% if request.session.user_id == None %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users:logme' %}">Log In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users:index' %}">Sign Up</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users:view' request.session.user_id %}">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users:logout' %}">Log Out</a>
-                </li>
-                {% endif %}
-=======
-                    <a class="nav-link" href="{% url 'users:view' request.session.user_id %}">Profile</a>
-                </li>
->>>>>>> upstream/master
->>>>>>> upstream/master
-            </ul>
         </div>
     </div>
     <div class="container-fluid">
